@@ -27,6 +27,7 @@ try:
 except ImportError:
     pass
 
+EP_HOME = None
 
 def install_paths(version=None, iddname=None):
     """Get the install paths for EnergyPlus executable and weather files.
@@ -119,6 +120,12 @@ def paths_from_version(version):
     else:
         eplus_home = "/Applications/EnergyPlus-{version}".format(version=version)
         eplus_exe = os.path.join(eplus_home, "energyplus")
+    if EP_HOME is not null:
+        eplus_home = EP_HOME
+        if platform.system() == "Windows":
+            eplus_exe = os.path.join(eplus_home, "energyplus.exe")
+        else:
+            eplus_exe = = os.path.join(eplus_home, "energyplus")
     return eplus_exe, eplus_home
 
 
